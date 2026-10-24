@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buddy Skill Up – Learn to Code. Build Your Future.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7ff;--card:#fff;--text:#1e1b2e;--muted:#6b6880;--line:#ece7f7;--p:#7C3AED;--k:#EC4899;--grad:linear-gradient(135deg,#7C3AED,#EC4899);--sh:0 8px 24px rgba(124,58,237,.10)}
+[data-theme="dark"]{--bg:#12101c;--card:#1c1930;--text:#f1eefb;--muted:#a29fb8;--line:#2b2745;--sh:0 8px 24px rgba(0,0,0,.35)}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1216px;margin:0 auto;padding:0 32px}
+section{padding:40px 0}
+h1{font-size:clamp(36px,5vw,56px);line-height:1.1;font-weight:800}
+h2{font-size:clamp(26px,3.5vw,38px);font-weight:700;line-height:1.2}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:var(--muted)}
+.eyebrow{font-size:13px;font-weight:600;color:var(--p);text-transform:uppercase;letter-spacing:.08em}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:99px;border:2px solid var(--line);background:var(--card);font-weight:600}
+.btn.primary{background:var(--grad);color:#fff;border:0;box-shadow:0 10px 25px rgba(124,58,237,.3)}
+.btn:hover{transform:translateY(-2px)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh)}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:rgba(124,58,237,.12);color:var(--p);font-size:12px;font-weight:600}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.head p{max-width:540px;margin-top:8px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+[data-reveal]{opacity:0;transform:translateY(20px);transition:.6s}
+[data-reveal].in{opacity:1;transform:none}
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:80px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.logo i{width:32px;height:32px;border-radius:10px;background:var(--grad);display:grid;place-items:center;font-style:normal}
+nav{display:flex;gap:4px}
+nav a{padding:6px 12px;border-radius:10px;font-size:14px;font-weight:500;color:var(--muted)}
+nav a:hover{background:var(--line);color:var(--text)}
+.tools{display:flex;align-items:center;gap:10px}
+.tools input{width:200px;padding:9px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card)}
+.icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card)}
+@media(max-width:1000px){nav{display:none}.tools input{width:130px}}
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-top:56px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+.badge{display:inline-block;padding:6px 16px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13px;box-shadow:var(--sh)}
+.hero h1{margin:16px 0}
+.search{display:flex;gap:8px;max-width:576px;margin:24px 0 10px;padding:8px;border-radius:99px;background:var(--card);box-shadow:var(--sh)}
+.search input{flex:1;border:0;outline:0;background:none;padding:0 16px}
+.search button{border:0;border-radius:99px;padding:10px 20px;background:var(--grad);color:#fff;font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;align-items:center}
+.chips button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:2px 10px;font-size:12px}
+.cta{display:flex;gap:16px;flex-wrap:wrap;margin:24px 0}
+.stages{display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap}
+.stages b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:12px;margin-right:6px}
+/* buddy */
+.buddy{padding:24px}
+.bubble{padding:16px;border-radius:16px;background:rgba(124,58,237,.1);font-size:14px;position:relative;margin-bottom:24px}
+.bubble::after{content:"";position:absolute;bottom:-10px;left:60px;width:20px;height:20px;background:inherit;transform:rotate(45deg)}
+.mascot{width:176px;height:176px;margin:0 auto 12px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-size:84px;box-shadow:0 18px 40px rgba(124,58,237,.35)}
+.bactions{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.bactions button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 14px;font-size:13px}
+.goal{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+.bar{height:8px;border-radius:99px;background:var(--line);margin:8px 0;overflow:hidden}
+.bar>i,.bar>div{display:block;height:100%;width:0;border-radius:99px;background:var(--grad)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+.stat{display:flex;gap:16px;align-items:center;padding:18px}
+.stat span.ic{width:48px;height:48px;border-radius:14px;background:rgba(124,58,237,.12);display:grid;place-items:center;font-size:22px}
+.stat strong{font-size:24px;display:block}
+/* playground */
+.tabs{display:inline-flex;gap:4px;padding:6px;border-radius:99px;background:var(--card);border:1px solid var(--line);flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:6px 16px;border-radius:99px;font-size:14px;font-weight:500}
+.tabs button.active{background:var(--grad);color:#fff}
+.bench{display:grid;grid-template-columns:3fr 2fr;gap:16px;padding:16px}
+@media(max-width:900px){.bench{grid-template-columns:1fr}}
+.pane{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.pane header{position:static;height:auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;font-size:13px;background:var(--bg);backdrop-filter:none}
+.pane header button{border:0;background:none;color:var(--p);font-weight:600;font-size:13px;margin-left:10px}
+textarea[data-editor]{width:100%;height:300px;border:0;outline:0;resize:none;padding:16px;background:#1b1730;color:#e9e4ff;font:13px/1.6 ui-monospace,Menlo,monospace}
+iframe{width:100%;height:300px;border:0;background:#fff}
+.foot{display:flex;justify-content:space-between;padding:8px 16px;font-size:12px;color:var(--muted)}
+/* cards */
+.lang,.path,.proj,.game{padding:24px;display:flex;flex-direction:column;gap:10px}
+.lang .top,.proj .top{display:flex;justify-content:space-between;align-items:center}
+.lang .ic,.game .ic{width:48px;height:48px;border-radius:14px;background:rgba(124,58,237,.12);display:grid;place-items:center;font-weight:800;color:var(--p)}
+.lang p,.path p,.proj p,.game p{font-size:14px;color:var(--muted);flex:1}
+.link{font-weight:600;color:var(--p);font-size:14px}
+.row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.thumb{height:130px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:44px}
+.xp{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px;margin-top:24px}
+.cbanner{background:var(--grad);color:#fff;border-radius:28px;padding:48px;box-shadow:0 20px 50px rgba(124,58,237,.35)}
+.cbanner .btn{border:0;color:var(--p)}
+.cbanner .btn.ghost{background:rgba(255,255,255,.2);color:#fff}
+/* footer */
+footer{margin-top:40px;border-top:1px solid var(--line);padding:48px 0 24px;background:var(--card)}
+.fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:32px}
+@media(max-width:900px){.fcols{grid-template-columns:1fr 1fr}}
+footer h4{margin-bottom:12px}
+footer li{list-style:none;font-size:14px;color:var(--muted);margin-bottom:8px}
+footer ul{padding:0}
+footer form{display:grid;gap:8px}
+footer input{padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+footer form button{border:0;border-radius:12px;padding:10px;background:var(--grad);color:#fff;font-weight:600}
+.copy{display:flex;justify-content:space-between;margin-top:32px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><i>🤖</i> Buddy <span class="pill">Beta</span></a>
+    <nav>
+      <a href="#">Home</a><a href="#playground">Playground</a><a href="#languages">Languages</a>
+      <a href="#paths">Paths</a><a href="#projects">Projects</a><a href="#games">Brain Games</a>
+    </nav>
+    <div class="tools">
+      <input data-header-search type="search" placeholder="Search lessons...  ( / )">
+      <button class="icon" data-theme-toggle aria-label="Toggle theme">🌓</button>
+      <button class="icon" aria-label="Profile">🙂</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap hero">
+  <div data-reveal>
+    <span class="badge">✨ Your playful digital classroom</span>
+    <h1>Learn to Code.<br><span class="grad">Build Your Future.</span></h1>
+    <p class="muted" style="font-size:18px;max-width:600px">Bite-sized lessons, live coding, brain games and real projects, all guided by Buddy, your friendly learning companion.</p>
+    <form class="search" data-hero-search>
+      <input type="text" placeholder="What do you want to learn today?">
+      <button type="submit">Go →</button>
+    </form>
+    <div class="chips"><span class="muted">Try:</span>
+      <button data-chip="HTML">HTML</button><button data-chip="JavaScript">JavaScript</button>
+      <button data-chip="Python">Python</button><button data-chip="React">React</button><button data-chip="SQL">SQL</button>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#playground">Start Learning Free →</a>
+      <a class="btn" href="#games">🎮 Play Brain Games</a>
+    </div>
+    <div class="stages"><span><b>1</b>Learn</span>›<span><b>2</b>Practice</span>›<span><b>3</b>Build</span>›<span><b>4</b>Level up</span></div>
+  </div>
+
+  <div class="card buddy" data-reveal>
+    <div class="bubble"><b style="font-size:12px">Buddy says</b>
+      <p data-buddy-message>Hi! Ready to write some code today? 🚀</p></div>
+    <div class="mascot" data-buddy>🤖</div>
+    <div class="bactions">
+      <button data-buddy-tip>💡 Get a tip</button>
+      <button data-buddy-cheer>🎉 Cheer me</button>
+    </div>
+    <div class="goal"><span>Daily goal</span><span data-goal-label>75%</span></div>
+    <div class="bar"><i data-goal-bar></i></div>
+    <div class="row"><span>Keep your streak alive</span><span>+10 XP per cheer</span></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="wrap" style="padding-top:0">
+  <div class="stats" data-reveal>
+    <div class="card stat"><span class="ic">👩‍🎓</span><div><strong data-count="25000" data-suffix="+">0</strong><span class="muted">Active learners</span></div></div>
+    <div class="card stat"><span class="ic">📚</span><div><strong data-count="320" data-suffix="+">0</strong><span class="muted">Interactive lessons</span></div></div>
+    <div class="card stat"><span class="ic">🧩</span><div><strong data-count="150" data-suffix="+">0</strong><span class="muted">Brain puzzles</span></div></div>
+    <div class="card stat"><span class="ic">🏆</span><div><strong data-count="12000" data-suffix="+">0</strong><span class="muted">Projects built</span></div></div>
+  </div>
+</section>
+
+<!-- PLAYGROUND -->
+<section class="wrap" id="playground">
+  <div class="head" data-reveal>
+    <div><span class="eyebrow">⚡ Try it yourself</span><h2>Write code. See it live.</h2>
+      <p class="muted">Edit the code on the left and watch the result update instantly, with no setup needed.</p></div>
+    <div class="tabs">
+      <button data-sample="card">Hello Card</button><button data-sample="counter">Counter</button><button data-sample="todo">To-Do</button>
+    </div>
+  </div>
+  <div class="card bench" data-reveal>
+    <div class="pane">
+      <header><span>⌨️ index.html</span><span><span class="muted" data-status>Ready</span>
+        <button data-run>▶ Run</button><button data-copy>Copy</button><button data-reset>Reset</button></span></header>
+      <textarea data-editor spellcheck="false" aria-label="Code editor"></textarea>
+      <div class="foot"><span>HTML • UTF-8</span><span data-charcount>0 chars</span></div>
+    </div>
+    <div class="pane">
+      <header><span>👁 Live Result</span></header>
+      <iframe data-preview title="Live preview"></iframe>
+      <div class="foot"><span>Sandboxed preview</span><span>Auto-updates</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="wrap" id="languages">
+  <div class="head" data-reveal>
+    <div><span class="eyebrow">Popular languages</span><h2>Pick your first language</h2>
+      <p class="muted">From the structure of the web to systems programming. Start where you're curious.</p></div>
+    <div class="tabs">
+      <button class="active" data-category-tab="all">All</button><button data-category-tab="web">Web</button>
+      <button data-category-tab="backend">Backend</button><button data-category-tab="data">Data</button>
+      <button data-category-tab="systems">Systems</button>
+    </div>
+  </div>
+  <div class="grid4">
+    <article class="card lang" data-lang-card data-category="web" data-name="HTML5"><div class="top"><span class="ic">&lt;/&gt;</span><span class="pill">Beginner</span></div><h3>HTML5</h3><p>The fundamental skeleton of the web. Learn tags, semantic markup, forms, accessibility, and modern structural APIs.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="web" data-name="CSS3 Layouts"><div class="top"><span class="ic">{ }</span><span class="pill">Beginner</span></div><h3>CSS3 &amp; Layouts</h3><p>Master styling, responsive design, Flexbox, Grid, keyframe animations, and contemporary utility frameworks like Tailwind.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="web" data-name="JavaScript"><div class="top"><span class="ic">JS</span><span class="pill">Intermediate</span></div><h3>JavaScript</h3><p>Power dynamic web interfaces. Async/await, DOM manipulation, ES6+ methods, Fetch APIs, and modern client architecture.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="data" data-name="Python"><div class="top"><span class="ic">🐍</span><span class="pill">Beginner friendly</span></div><h3>Python</h3><p>Clean syntax for automation, data science, AI workflows, and rapid backend APIs using Flask or FastAPI.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="web" data-name="React Next.js"><div class="top"><span class="ic">⚛️</span><span class="pill">Intermediate</span></div><h3>React &amp; Next.js</h3><p>Component-based frontend design, Hooks, state management, routing, and high-performance server rendering patterns.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="data" data-name="SQL Databases"><div class="top"><span class="ic">🗄️</span><span class="pill">Beginner</span></div><h3>SQL &amp; Databases</h3><p>Query relational databases with ease: SELECT, multi-table JOINs, aggregations, indexing, and PostgreSQL schemas.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="backend" data-name="Java Core"><div class="top"><span class="ic">☕</span><span class="pill">Intermediate</span></div><h3>Java Core</h3><p>Solid object-oriented design, strong typing, multithreading, collections, and enterprise Spring Boot foundations.</p><a class="link" href="#">Start →</a></article>
+    <article class="card lang" data-lang-card data-category="systems" data-name="C C++"><div class="top"><span class="ic">C++</span><span class="pill">Advanced</span></div><h3>C &amp; C++</h3><p>High-performance systems programming, manual memory management, pointers, and game engine mechanics.</p><a class="link" href="#">Start →</a></article>
+  </div>
+</section>
+
+<!-- PATHS -->
+<section class="wrap" id="paths">
+  <div class="head" data-reveal><div><span class="eyebrow">Structured learning paths</span><h2>Follow a roadmap, not random videos</h2>
+    <p class="muted">Step-by-step journeys that take you from zero to job-ready.</p></div></div>
+  <div class="grid4">
+    <div class="card path" data-reveal><span class="pill">Career path</span><h3>Frontend Developer</h3><p>HTML, Modern CSS, JavaScript, React, Tailwind, responsive design, and state management.</p><div class="row"><span>Progress</span><span>65%</span></div><div class="bar" data-progress="65"><div></div></div><a class="link" href="#">Continue path →</a></div>
+    <div class="card path" data-reveal><span class="pill">Career path</span><h3>Backend Developer</h3><p>Node.js, Python FastAPI, PostgreSQL databases, REST APIs, authentication, and Docker containers.</p><div class="row"><span>Progress</span><span>40%</span></div><div class="bar" data-progress="40"><div></div></div><a class="link" href="#">Continue path →</a></div>
+    <div class="card path" data-reveal><span class="pill">Career path</span><h3>Full-Stack Architect</h3><p>End-to-end full stack web architecture. React frontend, Node backend, cloud deployment, and CI/CD pipelines.</p><div class="row"><span>Progress</span><span>25%</span></div><div class="bar" data-progress="25"><div></div></div><a class="link" href="#">Continue path →</a></div>
+    <div class="card path" data-reveal><span class="pill">Career path</span><h3>Python &amp; AI Basics</h3><p>Core Python programming, data analysis with Pandas, machine learning models, and LLM prompt engineering.</p><div class="row"><span>Progress</span><span>55%</span></div><div class="bar" data-progress="55"><div></div></div><a class="link" href="#">Continue path →</a></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="wrap" id="projects">
+  <div class="head" data-reveal><div><span class="eyebrow">Practical projects</span><h2>Build things you can show off</h2>
+    <p class="muted">Hands-on projects that turn lessons into portfolio pieces.</p></div><a class="btn" href="#">Explore all projects →</a></div>
+  <div class="grid4">
+    <div class="card proj" data-reveal><div class="thumb">🎨</div><div class="top"><h3>Developer Portfolio Website</h3></div><p>Build an elegant showcase with responsive CSS Grid layouts, dark mode toggle, and smooth anchor scrolling.</p><a class="link" href="#">Start project →</a></div>
+    <div class="card proj" data-reveal><div class="thumb">❓</div><div class="top"><h3>Interactive Quiz App</h3></div><p>Create a gamified quiz interface with countdown timers, XP scoring algorithms, and dynamic DOM manipulation.</p><a class="link" href="#">Start project →</a></div>
+    <div class="card proj" data-reveal><div class="thumb">💰</div><div class="top"><h3>Personal Expense Tracker</h3></div><p>Full-stack dashboard with interactive data charts, RESTful budget endpoints, and local storage persistence.</p><a class="link" href="#">Start project →</a></div>
+    <div class="card proj" data-reveal><div class="thumb">🎓</div><div class="top"><h3>Student Database Explorer</h3></div><p>Connect a Python backend to SQLite, craft complex relational queries, search by grades, and export statistical reports.</p><a class="link" href="#">Start project →</a></div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section class="wrap" id="games">
+  <div class="head" data-reveal><div><span class="eyebrow">🧠 Brain Games Zone</span><h2>Train your brain like a developer</h2>
+    <p class="muted">Quick puzzles that sharpen logic, memory and algorithmic thinking, and earn you XP.</p></div><a class="btn primary" href="#">🎮 Enter Brain Games Zone</a></div>
+  <div class="grid4">
+    <div class="card game" data-reveal><span class="ic">🔲</span><h3>Memory Matrix</h3><p>Remember active tile patterns across expanding grid sizes. Tests short-term visual buffer and working memory.</p><a class="link" href="#">Play →</a></div>
+    <div class="card game" data-reveal><span class="ic">🔢</span><h3>Pattern Predictor</h3><p>Detect numeric, geometric, and recursive sequences under clock pressure. Directly trains algorithmic intuition.</p><a class="link" href="#">Play →</a></div>
+    <div class="card game" data-reveal><span class="ic">🕵️</span><h3>Logic Detective</h3><p>Deduce the true condition based on boolean clues (AND, OR, NOT gates) and elimination grids.</p><a class="link" href="#">Play →</a></div>
+    <div class="card game" data-reveal><span class="ic">⚡</span><h3>Reflex Rush</h3><p>Match syntax symbols, keyboard shortcuts, and variable tokens before the timer ticks to zero.</p><a class="link" href="#">Play →</a></div>
+  </div>
+  <div class="card xp" data-reveal><div><h3>⚡ Earn XP &amp; Rewards</h3><p class="muted">Every puzzle and lesson adds to your level, streaks and badges.</p></div><a class="btn primary" href="#">View leaderboard</a></div>
+</section>
+
+<!-- CTA -->
+<section class="wrap">
+  <div class="cbanner" data-reveal>
+    <span class="badge" style="background:rgba(255,255,255,.2);border:0;box-shadow:none">🌟 Join the community</span>
+    <h2 style="margin:16px 0;max-width:680px">Level Up Your Career. One Concept, One Puzzle, One Project at a Time.</h2>
+    <p style="max-width:640px;opacity:.9">Learn with thousands of students, keep your streak and grow alongside Buddy, your companion that levels up as you do.</p>
+    <div class="cta"><a class="btn" href="#playground">Start Free Today →</a><a class="btn ghost" href="#games">🎮 Play a puzzle</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><a class="logo" href="#"><i>🤖</i> Buddy</a><p class="muted" style="margin-top:12px;font-size:14px">The playful and empowered digital classroom. Learn programming, solve brain puzzles, craft production code, and scale your tech career.</p></div>
+      <div><h4>Tutorials</h4><ul><li>HTML &amp; Web Basics</li><li>Modern CSS &amp; Tailwind</li><li>JavaScript &amp; TypeScript</li><li>Python for Data &amp; AI</li><li>SQL &amp; Databases</li></ul></div>
+      <div><h4>Practice</h4><ul><li>Coding Playground</li><li>Daily Code Challenges</li><li>Skill Assessment Quizzes</li><li>Hands-on Projects</li><li>Verified Certificates</li></ul></div>
+      <div><h4>Brain Games</h4><ul><li>Logic Circuits</li><li>Algorithm Mazes</li><li>Regex Crossword</li><li>Memory Pointers</li><li>XP Leaderboards</li></ul></div>
+      <div><h4>Stay Inspired</h4><p class="muted" style="font-size:14px;margin-bottom:12px">Receive fresh coding exercises, cheat sheets, and brain-teasers weekly.</p>
+        <form data-newsletter><input type="email" name="email" placeholder="Enter your email" required><button type="submit">Subscribe →</button></form></div>
+    </div>
+    <div class="copy"><span>© 2026 Buddy Skill Up. All rights reserved.</span><span>Privacy · Terms · Cookies · Contact</span></div>
+  </div>
+</footer>
+
+<script src="code.js" defer></script>
+</body>
+</html>
